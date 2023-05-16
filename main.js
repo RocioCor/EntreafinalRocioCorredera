@@ -3,6 +3,9 @@ function preciofinal(resultadoblusa, resultadocampera, resultadozapa) {
     total = resultadoblusa + resultadocampera + resultadozapa;
     return total;
 }
+function preciocompra(precio, unidad) {
+    return precio * unidad;
+};
 let compra = prompt("¿estás registrado? responder si o no")
 /*registracion - inicio de sesion*/
 if (compra.toLowerCase() === "si") {
@@ -11,73 +14,56 @@ if (compra.toLowerCase() === "si") {
     let contraseña = prompt("ingresa contraseña");
     while ((nombre === "") && (contraseña === "")) {
         alert("ERROR, usuario o contraseña vacía");
-nombre = prompt("Debes ingresar nombre de usuario");
-    contraseña = prompt("Debes ingresar contraseña");
-
-    } 
-     
-
-} else {
-    alert("Ups!...Debes registrarte para acceder")
+        nombre = prompt("Debes ingresar nombre de usuario");
+        contraseña = prompt("Debes ingresar contraseña");
+    }
+}
+else {
+    alert("Ups!...Debes registrarte para acceder, para nuevos usuarios tenemos 20% off!!")
     let nombre = prompt("ingresa nombre de usuario");
     let mail = prompt("ingresa tu mail");
     let contraseña = prompt("ingresa contraseña");
-    while ((nombre === "") && (contraseña === "") && (mail==="")) {
+    while ((nombre === "") && (contraseña === "") && (mail === "")) {
         alert("ERROR, usuario, contraseña o mail vacío");
-nombre = prompt("Debes ingresar nombre de usuario");
-    contraseña = prompt("Debes ingresar contraseña");
-    mail = prompt("Debes ingresar tu mail");
+        nombre = prompt("Debes ingresar nombre de usuario");
+        contraseña = prompt("Debes ingresar contraseña");
+        mail = prompt("Debes ingresar tu mail");
 
-    } 
+    }
     alert(`bienvenido ${nombre} te has registrado con éxito!`)
 
 }
-/*seleccion de productos y cantidad + cotizacion */
-alert("ahora dime ¿qué deseas comprar? camperas, blusas o zapatillas");
+// lista de productos y precios
+const mercaderia = [
+    { id: 1, product: "camperas", precio: 20000 },
+    { id: 2, product: "blusas", precio: 1500 },
+    { id: 3, product: "zapatilla", precio: 17000 },
+];
+let total=0;
+let resultado = 0;
 /**Blusas */
-let resultadoblusa;
-let blusas = prompt("¿deseas comprar blusas? responder si o no");
-let precioblusa = parseInt(20);
-if (blusas.toLowerCase() === "si") {
-    alert("Las blusas salen 20 pesos cada pack");
-    packs = prompt("¿cuantos packs deseas?");
-    while (packs < 11) {
-        alert("LA COMPRA MÍNIMA SON 11 PACKS");
-        packs = prompt("¿cuantos packs deseas?");
-    } resultadoblusa = packs * precioblusa;
-    alert(`en total son ${packs} * ${precioblusa} = ${resultadoblusa} ARS`);
-} else { alert("OK, veamos los siguientes productos") };
-/*Camperas */
-let preciocampera = parseInt(30);
-let camperas = prompt("¿deseas comprar camperas? responder si o no");
-if (camperas.toLowerCase() === "si") {
-    alert("Las camperas salen 30 pesos cada pack");
-    packs = prompt("¿cuantos packs deseas?");
-    while (packs < 11) {
-        alert("LA COMPRA MÍNIMA SON 11 PACKS");
-        packs = prompt("¿cuantos packs deseas?");
-    } resultadocampera = packs * preciocampera;
-    alert(`en total son ${packs} * ${preciocampera} = ${resultadocampera} ARS`);
-} else { alert("OK, veamos los siguientes productos") };
+let accion = prompt("¿deseas comprar?");
+while (accion.toLowerCase() === "si") {
+    let product = prompt("ahora dime ¿qué deseas comprar? camperas, blusas o zapatillas");
+    const busqueda = mercaderia.find(item => item.product.includes(product));
+    if (busqueda) {
+        let mensaje = `
+        Producto: ${busqueda.product}
+        Precio: $ ${busqueda.precio} cada una`;
 
-/*zapatillas */
-let resultadozapa;
-let preciozapatillas = parseInt(50)
-let zapatillas = prompt("¿deseas comprar zapatilas? responder si o no");
-if (zapatillas.toLowerCase() === "si") {
-    alert("Las zapatillas salen 50 pesos cada pack");
-    packs = prompt("¿cuantos packs deseas?");
-    while (packs < 11) {
-        alert("LA COMPRA MÍNIMA SON 11 PACKS");
-        packs = prompt("¿cuantos packs deseas?");
-    } resultadozapa = packs * preciozapatillas;
-    alert(`en total son ${packs} * ${preciocampera} = ${resultadozapa} ARS`)
-        ; let final = preciofinal(resultadoblusa, resultadozapa, resultadocampera)
-    alert(`el total de todo el pedido es ${final} ars`)
-    alert("listo! te enviaremos la cotización al mail registrado")
-} else { alert("OK, pronto tendremos más ingresos, esperamos tu regreso") }
+        let cantidad = parseInt(prompt(`${mensaje} ¿cuantas unidades deseas?`));
+          resultado = parseInt(preciocompra(busqueda.precio, cantidad));
 
+        while (cantidad < 3) {
+            alert("el mínimo de compra es de 3 prendas");
+            cantidad = parseInt(prompt(`${mensaje} ¿cuantas unidades deseas? recuerda el mínimo de compra son 3 prendas`));
+        }
 
-
-
-
+        alert(`genial se ha añadido al carrito el total es $ ${resultado}`);
+       accion = prompt("¿deseas seguir comprando?");  
+    }
+     total = total + resultado
+     
+ 
+}
+alert("toda la compra es de $"+ (total));/*hacer funcion que sume todos los totales */
