@@ -64,6 +64,6 @@ while (accion.toLowerCase() === "si") {
     }
      total = total + resultado
      
- 
+
 }
-alert("toda la compra es de $"+ (total));/*hacer funcion que sume todos los totales */
+alert("enviaremos el comprobante a tu mail,toda la compra es de $"+ (total));
