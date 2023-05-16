@@ -19,7 +19,7 @@ if (compra.toLowerCase() === "si") {
     }
 }
 else {
-    alert("Ups!...Debes registrarte para acceder, para nuevos usuarios tenemos 20% off!!")
+    alert("Ups!...Debes registrarte para acceder")
     let nombre = prompt("ingresa nombre de usuario");
     let mail = prompt("ingresa tu mail");
     let contraseña = prompt("ingresa contraseña");
@@ -63,7 +63,6 @@ while (accion.toLowerCase() === "si") {
        accion = prompt("¿deseas seguir comprando?");  
     }
      total = total + resultado
-     
-
 }
-alert("esperamos tu regreso, enviaremos el comprobante a tu mail,toda la compra es de $"+ (total));
+ alert("enviaremos el comprobante a tu mail,toda la compra es de $"+ (total));  
+alert("esperamos tu regreso, recuerda que pronto viene la nueva colección!!")
