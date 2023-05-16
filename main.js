@@ -37,7 +37,7 @@ else {
 const mercaderia = [
     { id: 1, product: "camperas", precio: 20000 },
     { id: 2, product: "blusas", precio: 1500 },
-    { id: 3, product: "zapatilla", precio: 17000 },
+    { id: 3, product: "zapatillas", precio: 17000 },
 ];
 let total=0;
 let resultado = 0;
@@ -66,4 +66,4 @@ while (accion.toLowerCase() === "si") {
      
 
 }
-alert("enviaremos el comprobante a tu mail,toda la compra es de $"+ (total));
+alert("esperamos tu regreso, enviaremos el comprobante a tu mail,toda la compra es de $"+ (total));
