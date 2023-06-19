@@ -6,10 +6,11 @@ let totalCamperaRecuperadoJson = 0;
 let totalBlusaRecuperadoJson = 0;
 let totalZapaRecuperadJson = 0;
 const mercaderia = [
-    { id: 1, product: "camperas", precio: 20000 },
+    { id: 1, product: "camperas", precio: 20000},
     { id: 2, product: "blusas", precio: 1500 },
     { id: 3, product: "zapatillas", precio: 17000 },
 ];
+
 /*blusa*/
 let boton1 = document.getElementById("boton1");
 const respuesta1 = () => {
@@ -20,7 +21,13 @@ boton1.addEventListener("click", function () {
     if (cantidadBlusa > 0) {
         let product = ("blusas")
         const busqueda = mercaderia.find(item => item.product.includes(product));
-
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Añadido al carrito!',
+            showConfirmButton: false,
+            timer: 1500
+          })
         if (busqueda) {
             let totalB = cantidadBlusa * busqueda.precio
             console.log(total)
@@ -42,7 +49,13 @@ boton2.addEventListener("click", function () {
     if (cantidadZapatilla > 0) {
         let product = ("zapatillas")
         const busqueda = mercaderia.find(item => item.product.includes(product));
-
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Añadido al carrito!',
+            showConfirmButton: false,
+            timer: 1500,
+          })
         if (busqueda) {
             let totalZ = cantidadZapatilla * busqueda.precio
             console.log(totalZ)
@@ -64,7 +77,13 @@ boton3.addEventListener("click", function () {
     if (cantidadCamperas > 0) {
         let product = ("camperas")
         const busqueda = mercaderia.find(item => item.product.includes(product));
-
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Añadido al carrito!',
+            showConfirmButton: false,
+            timer: 1500
+          })
         if (busqueda) {
             let totalC = cantidadCamperas * busqueda.precio
             console.log(totalC)
@@ -111,5 +130,18 @@ buscador.addEventListener("input", function () {
         }
     });
 });
-
+// FETCH-LISTA DE PRODUCTOS
+const lista = document.getElementById("listado");
+fetch("./data.json")
+  .then((response) => response.json())
+  .then((data) => {
+    data.forEach(item => { 
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <h2> Producto: ${item.product} </h2>
+        <p> Precio: ${item.precio} </p>
+      `;
+      lista.append(li); 
+    });
+  });
 

@@ -74,3 +74,8 @@ body .enlace:active {
   margin-bottom: 5vh;
 
 }
+#listado {
+  background-color: rgba(110, 10, 209, 0.504);
+
+  list-style: none;
+}
